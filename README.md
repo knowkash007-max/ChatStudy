@@ -79,20 +79,14 @@ Client-server chat applications are foundational to real-time communication over
 
  import socket
 
-# Create socket
 s = socket.socket()
-
-# Get host IP or hostname
 host = input("Enter hostname or host IP : ")
 port = 8080
-
-# Connect to server
 s.connect((host, port))
-
 print("Connected to chat server")
 
 while True:
-    # Receive message from server
+
     incoming_message = s.recv(1024).decode()
     print("Server :", incoming_message)
     print()
@@ -108,33 +102,21 @@ while True:
 
 import socket
 
-# Create socket
 s = socket.socket()
-
-# Get local host name
 host = socket.gethostname()
 port = 8080
-
 print("Server will start on host :", host)
-
-# Bind socket
 s.bind((host, port))
-
 print()
 print("Waiting for connection...")
 print()
-
-# Listen for client connection
 s.listen(1)
-
-# Accept connection
 conn, addr = s.accept()
-
 print(addr, "has connected to the server")
 print()
 
 while True:
-    # Send message to client
+
     message = input(">> ")
     conn.send(message.encode())
 
